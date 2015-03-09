@@ -1,0 +1,5 @@
+# build stuff
+*build-*
+
+# editor/preference files
+*.user
