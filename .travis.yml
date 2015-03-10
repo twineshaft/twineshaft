@@ -9,3 +9,10 @@ script:
  - cmake ../src
  - make
  - make check
+
+notifications:
+  irc:
+    channels:
+      - "chat.freenode.net#twineshaft"
+    on_success: change
+    on_failure: always
