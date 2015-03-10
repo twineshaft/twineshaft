@@ -2,10 +2,13 @@
  * (C) 2015 Augustin Cavalier <waddlesplash>
  * All rights reserved. Distributed under the terms of the MIT license.
  */
-#include "platform/clock.h"
 
+// This *must* be included first, or else bad things happen.
 #define _XOPEN_SOURCE 500 /* POSIX '95 */
 #include <time.h>
+#include <stdlib.h>
+
+#include "platform/clock.h"
 
 struct ClockPOSIX {
 	struct timespec ts;

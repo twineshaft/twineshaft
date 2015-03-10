@@ -45,7 +45,7 @@ else()
     set(LIBPLATFORM_LIBS ${LIBPLATFORM_LIBS} rt)
     set(CMAKE_REQUIRED_LIBRARIES rt)
     check_C_source_compiles("${CLOCK_TEST_SRC}" POSIX_clock_gettime_IN_rt)
-    unset(CMAKE_REQUIRED_FLAGS)
+    unset(CMAKE_REQUIRED_LIBRARIES)
 
     if(NOT POSIX_clock_gettime_IN_rt)
       message(FATAL_ERROR "Your OS does not support clock_gettime! Please implement a clock system.")
