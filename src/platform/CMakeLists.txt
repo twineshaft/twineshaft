@@ -8,13 +8,12 @@ include(CheckCSourceCompiles)
 # default (e.g. Windows) which we don't need, so unset it.
 unset(CMAKE_C_STANDARD_LIBRARIES)
 
-set(LPSRC platform)
 set(LIBPLATFORM_SRCS
-   ${LPSRC}/clock.h
-   ${LPSRC}/events.h
-   ${LPSRC}/types.h
-   ${LPSRC}/gl.h
-   ${LPSRC}/glwindow.h
+   clock.h
+   events.h
+   types.h
+   gl.h
+   glwindow.h
    )
 set(LIBPLATFORM_INCLUDE)
 set(LIBPLATFORM_LIBS)
@@ -25,8 +24,8 @@ check_include_files(stdint.h HAVE_STDINT_H)
 
 if(WIN32)
   set(LIBPLATFORM_SRCS ${LIBPLATFORM_SRCS}
-      ${LPSRC}/win32/wglwindow.c
-      ${LPSRC}/win32/clock.c
+      win32/wglwindow.c
+      win32/clock.c
       )
   set(LIBPLATFORM_LIBS ${LIBPLATFORM_LIBS} gdi32 user32)
   add_definitions(-DWIN32_LEAN_AND_MEAN)
@@ -36,7 +35,7 @@ if(WIN32)
 else()
   find_package(X11)
   if(X11_FOUND)
-    set(LIBPLATFORM_SRCS ${LIBPLATFORM_SRCS} ${LPSRC}/glx/glxwindow.c)
+    set(LIBPLATFORM_SRCS ${LIBPLATFORM_SRCS} glx/glxwindow.c)
     set(LIBPLATFORM_INCLUDE ${LIBPLATFORM_INCLUDE} ${X11_INCLUDE_DIR})
     set(LIBPLATFORM_LIBS ${LIBPLATFORM_LIBS} ${X11_X11_LIB})
   else()
@@ -55,10 +54,10 @@ else()
       message(FATAL_ERROR "Your OS does not support clock_gettime! Please implement a clock system.")
     endif()
   endif()
-  set(LIBPLATFORM_SRCS ${LIBPLATFORM_SRCS} ${LPSRC}/posix/clock.c)
+  set(LIBPLATFORM_SRCS ${LIBPLATFORM_SRCS} posix/clock.c)
 endif()
 
+include_directories(${LIBPLATFORM_INCLUDE})
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 add_library(platform STATIC ${LIBPLATFORM_SRCS})
 target_link_libraries(platform ${LIBPLATFORM_LIBS})
-target_include_directories(platform PRIVATE ${LIBPLATFORM_INCLUDE})
