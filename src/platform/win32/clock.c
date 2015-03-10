@@ -18,7 +18,7 @@ Clock clock_create()
 	* http://www.virtualdub.org/blog/pivot/entry.php?id=106, they're
 	* often very flaky. */
 	struct TimeClock* clock = malloc(sizeof(struct TimeClock));
-	
+
 	clock->timeSinceLast = timeGetTime();
 	return (Clock)clock;
 }
@@ -32,7 +32,7 @@ void clock_destroy(Clock cl)
 int32_t clock_get_time(Clock cl)
 {
 	struct TimeClock* clock = (struct TimeClock*)cl;
-	DWORD timeDiff = timeGetTime() - clock->timeSinceLast;
+	DWORD previousTime = clock->timeSinceLast;
 	clock->timeSinceLast = timeGetTime();
-	return timeDiff;
+	return (clock->timeSinceLast - previousTime);
 }
