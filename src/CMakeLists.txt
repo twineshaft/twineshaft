@@ -13,6 +13,11 @@ include(platform/CMakeLists.txt)
 include_directories(${OPENGL_INCLUDE_DIR})
 
 ######
+## tests
+######
+add_subdirectory(../tests ${CMAKE_CURRENT_BINARY_DIR}/tests/)
+
+######
 ## twineshaft
 ######
 set(SRCS
