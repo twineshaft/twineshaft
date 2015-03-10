@@ -10,24 +10,32 @@
 
 #include "platform/clock.h"
 
-struct ClockPOSIX {
-	struct timespec ts;
+struct GettimeClock {
+	int32_t timeSinceLast;
 };
 
 Clock clock_create()
 {
-	struct ClockPOSIX* clock = malloc(sizeof(struct ClockPOSIX));
-
-	return (Clock)clock;
+	Clock clock = (Clock)malloc(sizeof(struct GettimeClock));
+	clock_get_time(clock); // Initialize timeSinceLast.
+	return clock;
 }
 
 void clock_destroy(Clock cl)
 {
-	struct ClockPOSIX* clock = (struct ClockPOSIX*)cl;
+	struct GettimeClock* clock = (struct GettimeClock*)cl;
 	free(clock);
 }
 
 int32_t clock_get_time(Clock cl)
 {
-	struct ClockPOSIX* clock = (struct ClockPOSIX*)cl;
+	struct GettimeClock* clock = (struct GettimeClock*)cl;
+	struct timespec t;
+	int status = clock_gettime(CLOCK_MONOTONIC, &t);
+	if (status != 0)
+		exit(1); // TODO: report error
+
+	int32_t previousTime = clock->timeSinceLast;
+	clock->timeSinceLast = (t.tv_sec*1000 + t.tv_nsec/1000);
+	return (clock->timeSinceLast - previousTime);
 }
