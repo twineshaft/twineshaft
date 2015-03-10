@@ -43,7 +43,7 @@ else()
     message(FATAL_ERROR No supported windowing system found!)
   endif()
 
-  set(CLOCK_TEST_SRC "#define _XOPEN_SOURCE 500\n#include <time.h>\nmain(){struct timespec a;clock_gettime(CLOCK_MONOTONIC, &a);}")
+  set(CLOCK_TEST_SRC "#define _XOPEN_SOURCE 500\n#include <time.h>\nmain(){struct timespec a;clock_gettime(CLOCK_MONOTONIC,&a);}")
   check_C_source_compiles("${CLOCK_TEST_SRC}" POSIX_clock_gettime)
   if(NOT POSIX_clock_gettime)
     set(LIBPLATFORM_LIBS ${LIBPLATFORM_LIBS} rt)
