@@ -4,6 +4,10 @@
 include(CheckIncludeFiles)
 include(CheckCSourceCompiles)
 
+# On some platforms, CMake automatically adds some libraries to this by
+# default (e.g. Windows) which we don't need, so unset it.
+unset(CMAKE_C_STANDARD_LIBRARIES)
+
 set(LPSRC platform)
 set(LIBPLATFORM_SRCS
    ${LPSRC}/clock.h

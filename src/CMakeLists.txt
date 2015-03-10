@@ -7,7 +7,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 
 include(../build/cmake/FindC99.cmake)
 set(CMAKE_C_FLAGS ${C99_CFLAGS})
-set(CMAKE_C_STANDARD_LIBRARIES "")
 
 find_package(OpenGL REQUIRED)
 include(platform/CMakeLists.txt)
