@@ -1,4 +1,6 @@
 language: cpp
+before_install:
+ - cmake --version
 install:
  - sudo apt-get update -qq
  - sudo apt-get install -qq libgl1-mesa-dev
@@ -6,3 +8,4 @@ script:
  - mkdir build-src && cd build-src
  - cmake ../src
  - make
+ - make check
