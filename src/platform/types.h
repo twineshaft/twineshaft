@@ -7,7 +7,7 @@
 
 #include "config.h"
 
-#ifdef HAVE_STDBOOL_H
+#if defined(HAVE_STDBOOL_H) && !defined(USE_BUILTIN_TYPES)
 #  include <stdbool.h>
 #else
 #  define bool char
@@ -15,17 +15,17 @@
 #  define false (0)
 #endif
 
-#ifdef HAVE_STDINT_H
+#if defined(HAVE_STDINT_H) && !defined(USE_BUILTIN_TYPES)
 #  include <stdint.h>
 #else
-typedef signed char			int8_t;
-typedef short				int16_t;
-typedef int					int32_t;
-typedef long long int		int64_t;
-typedef unsigned int8_t		uint8_t;
-typedef unsigned int16_t	uint16_t;
-typedef unsigned int32_t	uint32_t;
-typedef unsigned int64_t	uint64_t;
+typedef signed char			    int8_t;
+typedef short				    int16_t;
+typedef int					    int32_t;
+typedef long long int		    int64_t;
+typedef unsigned char           uint8_t;
+typedef unsigned short	        uint16_t;
+typedef unsigned int	        uint32_t;
+typedef unsigned long long int	uint64_t;
 #endif
 
 #endif // PLATFORM_TYPES_H
