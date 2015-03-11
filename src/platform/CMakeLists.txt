@@ -4,10 +4,6 @@
 include(CheckIncludeFiles)
 include(CheckCSourceCompiles)
 
-# On some platforms, CMake automatically adds some libraries to this by
-# default (e.g. Windows) which we don't need, so unset it.
-unset(CMAKE_C_STANDARD_LIBRARIES)
-
 set(LIBPLATFORM_SRCS
    clock.h
    events.h
@@ -15,9 +11,6 @@ set(LIBPLATFORM_SRCS
    gl.h
    glwindow.h
    )
-set(LIBPLATFORM_INCLUDE)
-set(LIBPLATFORM_LIBS)
-set(LIBPLATFORM platform)
 
 check_include_files(stdbool.h HAVE_STDBOOL_H)
 check_include_files(stdint.h HAVE_STDINT_H)
@@ -27,11 +20,7 @@ if(WIN32)
       win32/wglwindow.c
       win32/clock.c
       )
-  set(LIBPLATFORM_LIBS ${LIBPLATFORM_LIBS} gdi32 user32)
-  add_definitions(-DWIN32_LEAN_AND_MEAN)
-  if(MSVC)
-    set(CMAKE_EXE_LINKER_FLAGS "/SUBSYSTEM:WINDOWS /ENTRY:\"mainCRTStartup\"")
-  endif(MSVC)
+  set(LIBPLATFORM_LIBS ${LIBPLATFORM_LIBS} gdi32 user32 winmm)
 else()
   find_package(X11)
   if(X11_FOUND)

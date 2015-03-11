@@ -1,0 +1,10 @@
+version: '{build}'
+
+install:
+ - cinst -y cmake
+build_script:
+ - mkdir build-src && cd build-src
+ - cmake ..\src -G"Visual Studio 12 2013"
+ - msbuild twineshaft.sln
+#test_script:
+# -
