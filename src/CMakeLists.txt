@@ -32,4 +32,6 @@ set(SRCS
    )
 add_executable(twineshaft ${SRCS})
 target_link_libraries(twineshaft platform ${OPENGL_gl_LIBRARY})
-set_target_properties(twineshaft PROPERTIES LINK_FLAGS ${LINKER_FLAGS_NOGUI})
+if(LINKER_FLAGS_NOGUI)
+  set_target_properties(twineshaft PROPERTIES LINK_FLAGS ${LINKER_FLAGS_NOGUI})
+endif()
