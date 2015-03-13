@@ -9,6 +9,16 @@
 int tests_failed;
 int tests_succeded;
 
+#ifdef WIN32
+#  define COLOR_RED
+#  define COLOR_GREEN
+#  define COLOR_RESET
+#else
+#  define COLOR_RED "\e[97m\e[101m"
+#  define COLOR_GREEN "\e[97m\e[42m"
+#  define COLOR_RESET "\e[0m"
+#endif
+
 void test_begin()
 {
 	tests_failed = 0;
@@ -19,10 +29,10 @@ void test_begin()
 void test_result(int succeeded, const char* name)
 {
 	if (succeeded) {
-		printf("\e[42m\e[97mPASS\e[0m: %s\n", name);
+		printf(COLOR_GREEN "PASS" COLOR_RESET ": %s\n", name);
 		tests_succeded++;
 	} else {
-		printf("\e[101m\e[97mFAIL\e[0m: %s\n", name);
+		printf(COLOR_RED "FAIL" COLOR_RESET ": %s\n", name);
 		tests_failed++;
 	}
 }
