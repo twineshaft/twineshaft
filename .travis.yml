@@ -8,7 +8,7 @@ script:
  - mkdir build-src && cd build-src
  - cmake ../src
  - make
- - make check
+ - ./platform_test
 
 notifications:
   irc:
