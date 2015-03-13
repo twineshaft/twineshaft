@@ -9,7 +9,7 @@
 int tests_failed;
 int tests_succeded;
 
-#ifdef WIN32
+#ifdef WIN32_LEAN_AND_MEAN
 #  define COLOR_RED
 #  define COLOR_GREEN
 #  define COLOR_RESET
