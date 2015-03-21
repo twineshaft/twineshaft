@@ -9,6 +9,7 @@
 #include <X11/Xlib.h>
 #include <GL/glx.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 Display* display;
 struct GLXWindow {
@@ -21,13 +22,17 @@ struct GLXWindow {
 
 GLWindow glwindow_create(const char* title, Size size)
 {
-	// TODO: error handling when stuff fails.
 	struct GLXWindow* wind = malloc(sizeof(struct GLXWindow));
-	display = XOpenDisplay(NULL);
+	if (!(display = XOpenDisplay(NULL))) {
+		fprintf(stderr, "GLXWindow: could not open display!\n");
+		return NULL;
+	}
 
 	int dummy;
-	if (!glXQueryExtension(display, &dummy, &dummy))
-      return NULL; // No GLX present on server
+	if (!glXQueryExtension(display, &dummy, &dummy)) {
+		fprintf(stderr, "GLXWindow: no GLX present on server!\n");
+		return NULL;
+	}
 
 	int attributes[] = { GLX_RGBA,
 						 GLX_DOUBLEBUFFER,
@@ -36,10 +41,17 @@ GLWindow glwindow_create(const char* title, Size size)
 						 GLX_BLUE_SIZE, 8,
 						 GLX_DEPTH_SIZE, 8,
 						 0 };
-	wind->visualInfo = glXChooseVisual(display, DefaultScreen(display),
-		attributes);
+	if (!(wind->visualInfo = glXChooseVisual(display, DefaultScreen(display),
+		attributes))) {
+		fprintf(stderr, "GLXWindow: no RGB visual with depth buffer!\n");
+		return NULL;
+	}
 
-	wind->glContext = glXCreateContext(display, wind->visualInfo, None, True);
+	if (!(wind->glContext = glXCreateContext(display, wind->visualInfo, None,
+		True))) {
+		fprintf(stderr, "GLXWindow: could not create an OpenGL context!\n");
+		return NULL;
+	}
 	wind->colormap = XCreateColormap(display,
 		RootWindow(display, wind->visualInfo->screen),
 		wind->visualInfo->visual, AllocNone);

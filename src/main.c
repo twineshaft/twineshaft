@@ -10,6 +10,8 @@
 int main(int argc, char* argv[])
 {
 	GLWindow w = glwindow_create("Main", (Size){640, 480});
+	if (w == NULL)
+		return 1;
 
 	int retcode = twineshaft(w);
 
