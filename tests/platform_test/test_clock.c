@@ -6,7 +6,7 @@
 
 #include "platform/clock.h"
 
-#include <stdio.h>
+#include <stdlib.h>
 
 void run_clock_tests()
 {

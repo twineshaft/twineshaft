@@ -9,6 +9,7 @@
 // Declarations of the test functions.
 void run_types_tests();
 void run_clock_tests();
+void run_glwindow_tests();
 
 int main(int argc, char* argv)
 {
@@ -17,6 +18,8 @@ int main(int argc, char* argv)
 	run_types_tests();
 	puts("");
 	run_clock_tests();
+	puts("");
+	run_glwindow_tests();
 
 	return test_retcode();
 }
