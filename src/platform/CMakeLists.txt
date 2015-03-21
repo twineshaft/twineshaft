@@ -43,7 +43,7 @@ else()
       message(FATAL_ERROR "Your OS does not support clock_gettime! Please implement a clock system.")
     endif()
   endif()
-  set(LIBPLATFORM_SRCS ${LIBPLATFORM_SRCS} posix/clock.c)
+  set(LIBPLATFORM_SRCS ${LIBPLATFORM_SRCS} posix/clock.c posix/sleep.c)
 endif()
 
 include_directories(${LIBPLATFORM_INCLUDE})

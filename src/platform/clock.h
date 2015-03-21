@@ -11,7 +11,8 @@ typedef void* Clock;
 
 Clock clock_create();
 void clock_destroy(Clock clock);
-
 int32_t clock_get_time(Clock clock);
+
+void clock_sleep(int32_t ms);
 
 #endif // PLATFORM_CLOCK_H

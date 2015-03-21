@@ -36,3 +36,8 @@ int32_t clock_get_time(Clock cl)
 	clock->timeSinceLast = timeGetTime();
 	return (clock->timeSinceLast - previousTime);
 }
+
+void clock_sleep(int32_t ms)
+{
+	Sleep(ms);
+}

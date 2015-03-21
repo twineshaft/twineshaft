@@ -13,6 +13,8 @@ void run_clock_tests()
 	Clock c = NULL;
 	c = clock_create();
 	test_result((c != NULL), "clock_create()");
-	// TODO: sleep
-	test_result(clock_get_time(c), "clock_get_time()");
+
+	clock_sleep(50);
+	test_result(clock_get_time(c), "clock_sleep(), clock_get_time()");
+	clock_destroy(c);
 }
