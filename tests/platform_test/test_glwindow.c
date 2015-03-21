@@ -6,7 +6,7 @@
 
 #include "platform/glwindow.h"
 
-#include <stdlib.h>
+#include <stddef.h>
 
 void run_glwindow_tests()
 {

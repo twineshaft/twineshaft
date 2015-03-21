@@ -11,5 +11,5 @@
 
 void clock_sleep(int32_t ms)
 {
-	usleep(ms*1000);
+	usleep(ms * 1000);
 }

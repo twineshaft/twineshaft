@@ -2,6 +2,8 @@
  * (C) 2015 Augustin Cavalier <waddlesplash>
  * All rights reserved. Distributed under the terms of the MIT license.
  */
+#include <stddef.h>
+
 #include "platform/types.h"
 #include "platform/glwindow.h"
 
