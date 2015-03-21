@@ -138,7 +138,7 @@ void glwindow_flush(GLWindow window)
 }
 
 // Stuff for WGLWindowProc to use/set.
-struct WGLWindow* glwindow_event_wind;
+struct WGLWindow* glwindow_event_wind = NULL;
 int32_t glwindow_event_retcode;
 int32_t glwindow_get_event(GLWindow window)
 {
@@ -159,6 +159,9 @@ next:
 }
 LRESULT APIENTRY WGLWindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+	if (glwindow_event_wind == NULL)
+		return DefWindowProc(hWnd, msg, wParam, lParam);
+
 	switch (msg) {
 	case WM_SIZE:
 		glwindow_event_wind->hWndSize.width = (int)LOWORD(lParam);
