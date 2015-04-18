@@ -5,7 +5,7 @@
 #ifndef RENDER_H
 #define RENDER_H
 
-#include "util/geometry.h"
+#include "platform/geometry.h"
 
 void render_init(Size size);
 void render_resize(Size size);

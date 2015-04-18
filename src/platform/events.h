@@ -12,6 +12,6 @@
 #define EVENT_MOUSE_M	0x04
 #define EVENT_MOUSE_R	0x05
 
-#include "util/ascii.h"
+#include "ascii.h"
 
 #endif // UTIL_EVENTS_H

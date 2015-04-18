@@ -27,8 +27,6 @@ set(SRCS
    twineshaft.h
    render/render.h
    render/gl/glrender.c
-   util/ascii.h
-   util/geometry.h
    )
 add_executable(twineshaft ${SRCS})
 target_link_libraries(twineshaft platform ${OPENGL_gl_LIBRARY})

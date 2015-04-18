@@ -10,6 +10,8 @@ set(LIBPLATFORM_SRCS
    types.h
    gl.h
    glwindow.h
+   ascii.h
+   geometry.h
    )
 
 check_include_files(stdbool.h HAVE_STDBOOL_H)

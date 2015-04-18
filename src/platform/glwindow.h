@@ -6,7 +6,7 @@
 #define PLATFORM_GLWINDOW_H
 
 #include "events.h"
-#include "util/geometry.h"
+#include "geometry.h"
 
 typedef void* GLWindow;
 
