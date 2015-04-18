@@ -1,6 +1,6 @@
 # build stuff
-*build-*
+*build*
 
 # editor/preference files
-*.user
+*.user*
 .c9/

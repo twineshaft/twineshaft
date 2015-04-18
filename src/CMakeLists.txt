@@ -5,18 +5,18 @@ cmake_minimum_required(VERSION 2.8)
 project(twineshaft C)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/platform)
 
-include(../build/cmake/PlatformGlobal.cmake)
-include(../build/cmake/FindC99.cmake)
+include(../platform/build/cmake/PlatformGlobal.cmake)
+include(../platform/build/cmake/FindC99.cmake)
 set(CMAKE_C_FLAGS ${C99_CFLAGS})
 
 find_package(OpenGL REQUIRED)
-add_subdirectory(platform)
-include_directories(${OPENGL_INCLUDE_DIR})
+add_subdirectory(../platform/src ${CMAKE_CURRENT_BINARY_DIR}/platform/)
+include_directories(../platform/include ${OPENGL_INCLUDE_DIR})
 
 ######
 ## tests
 ######
-add_subdirectory(../tests ${CMAKE_CURRENT_BINARY_DIR}/tests/)
+add_subdirectory(../platform/tests ${CMAKE_CURRENT_BINARY_DIR}/tests/)
 
 ######
 ## twineshaft
